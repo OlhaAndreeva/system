@@ -32,7 +32,7 @@ $(document).ready(function () {
           }
         });
   
-        let t = [];
+        let t = []; 
         for (let j = 1; j <= 5; j++) {
           let lessonLength = 0;
           let newTempData = [];
