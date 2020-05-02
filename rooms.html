@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="info-room.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="header">
+  <a href="https://olhaandreeva.github.io/system/" class="logo">Info-Room</a>
+  <a href="./rooms.html" class="free-rooms">Пошук вільних аудиторій</a>
+  <a class="active right" href="https://shedules.herokuapp.com/admin/login/?next=/admin/">Вхід</a>
+</div>
+<figure class="picture">
+  <img src="changbok-ko-F8t2VGnI47I-unsplash.jpg">
+  <div class="choose">
+        <select id="day">
+          <option>Понеділок</option>
+          <option>Вівторок</option>
+          <option>Середа</option>
+          <option>Четверг</option>
+          <option>П'ятниця</option>
+        </select>
+        <select id="lesson">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      <button class="btn-search" type="submit" id="search">Пошук</button>
+    </div>
+</figure>
+      <h1>Графік вільних аудиторій</h1>
+      <table class="table" id="schedule">
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <footer>
+        <p class="right">© 2020</p>
+        <p>Фізико-математичний факультет</p>
+    </footer>
+    <script src="system2.js"></script>
+</body>
+</html>
