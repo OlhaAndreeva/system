@@ -54,21 +54,20 @@ figure {
  width: 100%;
  height: 400px; 
  margin: 0;
+ position: relative
 }
-figure img { 
+img { 
  width: 100%;
  height: 100%;
  object-fit: cover; 
  filter: brightness(25%);
 }
 
-.choose {
-  height: 15em;
+form {
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 
@@ -76,9 +75,10 @@ select{
   height: 50px;
   width: 160px;
   border-radius: 4px;
+ margin-top: 5px;
 }
 
-.btn-search{
+.btn-search, .btn-search2{
   height: 50px;
   width: 100px;
   background-color: dodgerblue;
@@ -86,6 +86,7 @@ select{
   color: white;
   font-weight: bold;
   border-radius: 4px;
+  margin-top: 5px;
 }
 .btn-search:hover{
   opacity: 0.8;
@@ -117,7 +118,7 @@ footer{
   background-color: #f1f1f1;
 }
 
-@media only screen and (orientation: portrait){ 
+@media only screen and (max-width: 750px){ 
   .choose{
     margin: auto;
   }
@@ -129,5 +130,24 @@ footer{
       height: 40px;
       width: 310px;
       margin-top: 10px;
+  }
+  .btn-search2{
+    height: 40px;
+    width: 205px;
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 751px), screen and (orientation: landscape){ 
+  select{
+    height: 40px;
+    width: 100px;
+  }
+  .btn-search, .btn-search2{
+      height: 40px;
+      width: 100px;
+  }
+  .choose{
+    width: 430px;
   }
 }
