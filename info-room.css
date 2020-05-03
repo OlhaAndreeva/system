@@ -63,7 +63,7 @@ img {
  filter: brightness(25%);
 }
 
-form {
+.choose {
   margin: 0;
   position: absolute;
   top: 50%;
