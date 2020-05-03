@@ -138,16 +138,3 @@ footer{
   }
 }
 
-@media (min-width: 751px), screen and (orientation: landscape){ 
-  select{
-    height: 40px;
-    width: 100px;
-  }
-  .btn-search, .btn-search2{
-      height: 40px;
-      width: 100px;
-  }
-  .choose{
-    width: 430px;
-  }
-}
