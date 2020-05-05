@@ -104,18 +104,58 @@ $(document).ready(function () {
   }
 
 
-
-      $(document).ready(function () {
-        $("#search").click(function (event) {
-            var days = ($("#day").val());
-            var lessons = ($("#lesson").val());
-            var rooms = ($("#room").val());
-            $("tr").remove();
-            $.getJSON('https://shedules.herokuapp.com/api/schedules/'+"?day_of_week=" + days +"&lesson=" + lessons +"&room_id=" + rooms , function (scheds) {
-              $('#schedule thead').append("<tr><td>День тижня</td><td>Номер пари</td><td>Аудиторія</th><th>Група</td></tr>");
-              scheds.forEach(function(value) {
-                  $('#schedule').append('<tr><td>'+value.day_of_week+'</td><td>'+value.lesson+'</td><td>'+value.room_id+'</td><td>'+value.group_id+'</td></tr>');              
-                })
-            });
+$(document).ready(function () {
+  $("#search").click(function (event) {
+    var dayss = ($("#day").val());
+    var lessons = ($("#lesson").val());
+    var rooms = ($("#room").val());
+    $("tr").remove();
+    const days = ['Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця'];
+    
+    $.getJSON('https://shedules.herokuapp.com/api/schedules/'+"?day_of_week=" + dayss +"&lesson=" + lessons +"&room_id=" + rooms , function (data) {
+      let sortData = [];
+      let newData = [];
+      for (let i = 0; i < days.length; i++) {
+        $.each(data, function (key, val) {
+          if (val.day_of_week === days[i]) {
+            sortData.push(val);
+          }
         });
+      }
+      sortData.sort(compareLesson)
+      for (let i = 0; i < days.length; i++) {
+        let dayLength = 0;
+        let tempData = [];
+        $.each(sortData, function (key, val) {
+          if (val.day_of_week === days[i]) {
+            dayLength++;
+            tempData.push({ lesson: val.lesson, group_id: val.group_id, room_id: val.room_id });
+          }
+        });
+        let t = []; 
+        for (let j = 1; j <= 5; j++) {
+          let lessonLength = 0;
+          let newTempData = [];
+          $.each(tempData, function (key, val) {
+            if (val.lesson === j) {
+              lessonLength++;
+              newTempData.push({ group_id: val.group_id, room_id: val.room_id });
+            }
+          });
+        }
+        $.each(tempData, function (key, val) {
+        newData.push({ day_of_week: days[i], dayLength, lesson: val.lesson, group_id: val.group_id, room_id: val.room_id })});
+      }
+      $('#schedule thead').append("<tr><td>День тижня</td><td>Номер пари</td><td>Аудиторія</th><th>Група</td></tr>");
+      newData.forEach(function(val) {
+      $('#schedule tbody').append('' +
+        '<tr>' +
+        '<td>' + val.day_of_week + '</td>' +
+        '<td>' + val.lesson + '</td>' +
+        '<td>' + val.room_id + '</td>' +
+        '<td>' + val.group_id + '</td>' +
+        '</tr>');
+      });
     });
+  });
+});
